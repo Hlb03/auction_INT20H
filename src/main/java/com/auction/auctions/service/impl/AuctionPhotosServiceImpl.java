@@ -31,11 +31,9 @@ public class AuctionPhotosServiceImpl implements AuctionPhotosService {
     @Override
     public AuctionPhotoDTO getPhotoViaId(Long id) throws IOException {
         log.info("Getting photo via id {}", id);
-//    public byte[] getPhotoViaId(Long id) throws IOException {
         AuctionPhotos auctionPhotos = auctionPhotosRepository.findById(id).get();
         String filePath = auctionPhotos.getPhoto_ref();
         byte[] imageBytes = Files.readAllBytes(new File(filePath).toPath());
-//        log.info("BYTES ARRAY: " + Arrays.toString(imageBytes));
 
         return AuctionPhotoDTO.builder()
                 .id(auctionPhotos.getId())

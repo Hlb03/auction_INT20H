@@ -1,4 +1,4 @@
--- SEQUENCE IN PRESENT
+-- REPRESENTS APPLICATION USER
 CREATE TABLE "user"
 (
     id            SERIAL PRIMARY KEY,
@@ -9,6 +9,7 @@ CREATE TABLE "user"
     photo_url     VARCHAR(64)
 );
 
+-- DEFINES AUCTION STATE
 CREATE TABLE "auction_state"
 (
     name VARCHAR(12) PRIMARY KEY NOT NULL UNIQUE
@@ -19,6 +20,7 @@ VALUES ('PREPARING'),
        ('OPEN'),
        ('CLOSED');
 
+-- DEDICATED TO AUCTION ITSELF
 CREATE TABLE "auction"
 (
     id          SERIAL PRIMARY KEY,
@@ -31,6 +33,7 @@ CREATE TABLE "auction"
     owner_id    INTEGER REFERENCES "user" (id) ON DELETE CASCADE
 );
 
+-- STORES AUCTION PHOTOS
 CREATE TABLE "auction_photos"
 (
     id                SERIAL PRIMARY KEY,
@@ -40,22 +43,7 @@ CREATE TABLE "auction_photos"
     auction_id        INTEGER REFERENCES auction (id) ON DELETE CASCADE
 );
 
--- TODO: not sure about this table
--- CREATE TABLE "auction_participants" (
---     id SERIAL PRIMARY KEY,
---     auction_id INTEGER REFERENCES auction(id) ON DELETE CASCADE,
---     user_id INTEGER REFERENCES "user"(id) ON DELETE CASCADE
--- );
-
-
-CREATE TABLE "auction_participants"
-(
---     id         SERIAL PRIMARY KEY,
-    auction_id INTEGER REFERENCES auction (id) ON DELETE CASCADE,
-    user_id    INTEGER REFERENCES "user" (id) ON DELETE CASCADE
-);
-
--- SEQUENCE IS PRESENT
+-- CONNECTED WITH BETS, THAT WERE MADE BY USERS
 CREATE TABLE "user_bets"
 (
     bet_id     SERIAL PRIMARY KEY,
@@ -65,6 +53,7 @@ CREATE TABLE "user_bets"
     user_id    INTEGER REFERENCES "user" (id) ON DELETE CASCADE
 );
 
+-- DEDICATED TO CHAT (BUT THIS PART IS NOT IMPLEMENTED YET)
 CREATE TABLE "message"
 (
     id         SERIAL PRIMARY KEY,

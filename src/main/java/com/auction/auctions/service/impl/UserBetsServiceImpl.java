@@ -40,8 +40,6 @@ public class UserBetsServiceImpl implements UserBetsService {
                         .build())
                 .build());
 
-        // TODO: change it to getOneById method
-//        User user = userRepository.getUserById(bets.getUser().getId());
         User user = userRepository.getReferenceById(bets.getUser().getId());
         RepresentUserBetDTO betRepresentation = convertToDTO(bets);
         betRepresentation.setUserEmail(user.getEmail());

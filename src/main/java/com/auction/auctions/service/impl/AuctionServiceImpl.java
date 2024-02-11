@@ -26,7 +26,6 @@ public class AuctionServiceImpl implements AuctionService {
     private final AuctionRepository auctionRepository;
     private final UserRepository userRepository;
 
-    // TODO: could not work, because object is removed
     @Override
     public Long createNewAuction(String userEmail, AuctionCreationDTO auction) {
         log.info("Creating new auction with params: {}", auction);
@@ -40,7 +39,6 @@ public class AuctionServiceImpl implements AuctionService {
                         .user(userRepository.getUserByEmail(userEmail))
                         .build()
         ).getId();
-//        return temp.getId();
     }
 
     @Override
